@@ -5,6 +5,10 @@
  */
 package lab.pkg6_ingriddominguez;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -61,6 +65,8 @@ public class Principal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
+        jm_Archivo = new javax.swing.JMenu();
+        jmi_guardar = new javax.swing.JMenuItem();
         jm_Crear = new javax.swing.JMenu();
         jmi_Universo = new javax.swing.JMenuItem();
         jmi_SerVivo = new javax.swing.JMenuItem();
@@ -123,7 +129,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel4.setText("Crear Ser Vivo");
         jd_SerVivo.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 19, 179, 37));
 
-        jLabel5.setText("Nombre");
+        jLabel5.setText("Nombre Raza");
         jd_SerVivo.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 99, 30));
         jd_SerVivo.getContentPane().add(tf_nombreSV, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 67, 199, 30));
 
@@ -212,6 +218,18 @@ public class Principal extends javax.swing.JFrame {
         jLabel1.setText("Bienvenido");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(182, 104, 298, 105));
 
+        jm_Archivo.setText("Archivo");
+
+        jmi_guardar.setText("Guardar");
+        jmi_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_guardarActionPerformed(evt);
+            }
+        });
+        jm_Archivo.add(jmi_guardar);
+
+        jMenuBar1.add(jm_Archivo);
+
         jm_Crear.setText("Crear");
 
         jmi_Universo.setText("Universo");
@@ -240,7 +258,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jmi_Modificar.setText("jMenuItem1");
+        jmi_Modificar.setText("Modificar Ser Vivo");
         jmi_Modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmi_ModificarActionPerformed(evt);
@@ -262,6 +280,8 @@ public class Principal extends javax.swing.JFrame {
         jd_Universo.pack();
         jd_Universo.setLocationRelativeTo(this);
         jd_Universo.setVisible(true);
+        
+        
     }//GEN-LAST:event_jmi_UniversoActionPerformed
 
     private void tf_nombreUniversoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_nombreUniversoActionPerformed
@@ -377,6 +397,18 @@ public class Principal extends javax.swing.JFrame {
         jd_modificar.setVisible(true);
     }//GEN-LAST:event_jmi_ModificarActionPerformed
 
+    private void jmi_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_guardarActionPerformed
+        try {
+            // TODO add your handling code here:
+            universo.escribirArchivo();
+            System.out.println("Se creo el archivooooo !!!!!!!!!!!!!!!");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jmi_guardarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -435,11 +467,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDialog jd_SerVivo;
     private javax.swing.JDialog jd_Universo;
     private javax.swing.JDialog jd_modificar;
+    private javax.swing.JMenu jm_Archivo;
     private javax.swing.JMenu jm_Crear;
     private javax.swing.JMenu jm_Modificar;
     private javax.swing.JMenuItem jmi_Modificar;
     private javax.swing.JMenuItem jmi_SerVivo;
     private javax.swing.JMenuItem jmi_Universo;
+    private javax.swing.JMenuItem jmi_guardar;
     private javax.swing.JSpinner js_anios;
     private javax.swing.JSpinner js_aniosM;
     private javax.swing.JSpinner js_ki;

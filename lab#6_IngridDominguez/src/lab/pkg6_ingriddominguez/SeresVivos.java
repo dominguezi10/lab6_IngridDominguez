@@ -59,7 +59,7 @@ public class SeresVivos {
 
     @Override
     public String toString() {
-        return "nombre=" + nombre +  ", nombrePlaneta=" + nombrePlaneta ;
+        return nombre;
     }
     
     

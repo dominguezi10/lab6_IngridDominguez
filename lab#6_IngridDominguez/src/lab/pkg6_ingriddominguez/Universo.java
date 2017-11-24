@@ -5,6 +5,10 @@
  */
 package lab.pkg6_ingriddominguez;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -45,4 +49,27 @@ public class Universo {
     
     
     
-}
+    // primer metodo administracion
+    public void escribirArchivo() throws IOException {
+        File archivo = new File("./"+nombre+".txt");
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        
+        try {
+            fw = new FileWriter(archivo, false);
+            bw = new BufferedWriter(fw);
+            for (SeresVivos sv : seresVivos) {
+                bw.write(sv.getNombre()+"|");
+                bw.write(sv.getKi()+"|");
+                bw.write(sv.getMaximoAnios()+"|");
+                bw.write(sv.getNombrePlaneta()+";");  
+            }
+            bw.flush();
+        } catch (Exception e) {
+
+        }
+        bw.close();
+        fw.close();
+    }
+    
+}// fin de la clase
