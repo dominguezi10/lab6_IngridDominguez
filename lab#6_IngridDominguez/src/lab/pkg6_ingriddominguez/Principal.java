@@ -10,7 +10,9 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -63,15 +65,27 @@ public class Principal extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         tf_planetaM = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jd_Eliminar = new javax.swing.JDialog();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jcb_Eliminar = new javax.swing.JComboBox<>();
+        btn_Eliminar = new javax.swing.JButton();
+        jd_Abrir = new javax.swing.JDialog();
+        jLabel17 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jta_texto = new javax.swing.JTextArea();
+        btn_Abrir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jm_Archivo = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jmi_guardar = new javax.swing.JMenuItem();
         jm_Crear = new javax.swing.JMenu();
         jmi_Universo = new javax.swing.JMenuItem();
         jmi_SerVivo = new javax.swing.JMenuItem();
         jm_Modificar = new javax.swing.JMenu();
         jmi_Modificar = new javax.swing.JMenuItem();
+        jmi_eliminar = new javax.swing.JMenuItem();
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Crear Universo");
@@ -211,6 +225,95 @@ public class Principal extends javax.swing.JFrame {
         });
         jd_modificar.getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, 110, 40));
 
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel15.setText("Eliminar");
+
+        jLabel16.setText("Ser Vivo");
+
+        btn_Eliminar.setText("Eliminar");
+        btn_Eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_EliminarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_EliminarLayout = new javax.swing.GroupLayout(jd_Eliminar.getContentPane());
+        jd_Eliminar.getContentPane().setLayout(jd_EliminarLayout);
+        jd_EliminarLayout.setHorizontalGroup(
+            jd_EliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_EliminarLayout.createSequentialGroup()
+                .addGroup(jd_EliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_EliminarLayout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_EliminarLayout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(jcb_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(61, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_EliminarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73))
+        );
+        jd_EliminarLayout.setVerticalGroup(
+            jd_EliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_EliminarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jd_EliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jcb_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
+        );
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel17.setText("Documento");
+
+        jta_texto.setColumns(20);
+        jta_texto.setRows(5);
+        jScrollPane1.setViewportView(jta_texto);
+
+        btn_Abrir.setText("Abrir");
+        btn_Abrir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_AbrirMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_AbrirLayout = new javax.swing.GroupLayout(jd_Abrir.getContentPane());
+        jd_Abrir.getContentPane().setLayout(jd_AbrirLayout);
+        jd_AbrirLayout.setHorizontalGroup(
+            jd_AbrirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_AbrirLayout.createSequentialGroup()
+                .addGap(131, 131, 131)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_AbrirLayout.createSequentialGroup()
+                .addContainerGap(55, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_AbrirLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_Abrir)
+                .addGap(184, 184, 184))
+        );
+        jd_AbrirLayout.setVerticalGroup(
+            jd_AbrirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_AbrirLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(btn_Abrir)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -219,6 +322,14 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(182, 104, 298, 105));
 
         jm_Archivo.setText("Archivo");
+
+        jMenuItem1.setText("Abrir");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jm_Archivo.add(jMenuItem1);
 
         jmi_guardar.setText("Guardar");
         jmi_guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -266,6 +377,14 @@ public class Principal extends javax.swing.JFrame {
         });
         jm_Modificar.add(jmi_Modificar);
 
+        jmi_eliminar.setText("Eliminar Ser Vivo");
+        jmi_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_eliminarActionPerformed(evt);
+            }
+        });
+        jm_Modificar.add(jmi_eliminar);
+
         jMenuBar1.add(jm_Modificar);
 
         setJMenuBar(jMenuBar1);
@@ -280,8 +399,8 @@ public class Principal extends javax.swing.JFrame {
         jd_Universo.pack();
         jd_Universo.setLocationRelativeTo(this);
         jd_Universo.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_jmi_UniversoActionPerformed
 
     private void tf_nombreUniversoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_nombreUniversoActionPerformed
@@ -312,19 +431,28 @@ public class Principal extends javax.swing.JFrame {
             int ki = (Integer) js_ki.getValue();
             int anios = (Integer) js_anios.getValue();
             String planeta = tf_planeta.getText();
-            universo.getSeresVivos().add(new SeresVivos(nombre, ki, anios, planeta));
-            System.out.println(universo.getSeresVivos());
 
-            DefaultComboBoxModel modelo = (DefaultComboBoxModel) jcb_modificar.getModel();
-            modelo.addElement(universo.getSeresVivos().get(universo.getSeresVivos().size() - 1));
-            jcb_modificar.setModel(modelo);
+            if (((nombre.length() != 0 && ki > 0) && anios > 0) && (planeta.length() != 0)) {
 
-            tf_nombreSV.setText("");
-            js_ki.setValue(0);
-            js_anios.setValue(0);
-            tf_planeta.setText("");
+                universo.getSeresVivos().add(new SeresVivos(nombre, ki, anios, planeta));
+                System.out.println(universo.getSeresVivos());
 
-            JOptionPane.showMessageDialog(this, "Ser vivo agregado con exito");
+                DefaultComboBoxModel modelo = (DefaultComboBoxModel) jcb_modificar.getModel();
+                modelo.addElement(universo.getSeresVivos().get(universo.getSeresVivos().size() - 1));
+                jcb_modificar.setModel(modelo);
+                jcb_Eliminar.setModel(modelo);
+
+                tf_nombreSV.setText("");
+                js_ki.setValue(0);
+                js_anios.setValue(0);
+                tf_planeta.setText("");
+
+                JOptionPane.showMessageDialog(this, "Ser vivo agregado con exito");
+            } else {
+                JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios");
+
+            }
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error, sus datos no se guardaron");
             e.printStackTrace();
@@ -365,17 +493,14 @@ public class Principal extends javax.swing.JFrame {
             ((SeresVivos) jcb_modificar.getSelectedItem()).setMaximoAnios((Integer) js_aniosM.getValue());
             ((SeresVivos) jcb_modificar.getSelectedItem()).setKi((Integer) js_kiM.getValue());
             ((SeresVivos) jcb_modificar.getSelectedItem()).setNombrePlaneta(tf_planetaM.getText());
-            
-            
-            
+
             universo.getSeresVivos().get(pos).setKi((Integer) js_kiM.getValue());
             universo.getSeresVivos().get(pos).setNombre(tf_nombreSVM.getText());
             universo.getSeresVivos().get(pos).setMaximoAnios((Integer) js_aniosM.getValue());
             universo.getSeresVivos().get(pos).setNombrePlaneta(tf_planetaM.getText());
-            
+
             JOptionPane.showMessageDialog(this, "Modificado con exito!");
-            
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "error");
             e.printStackTrace();
@@ -386,7 +511,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jm_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_ModificarActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jm_ModificarActionPerformed
 
     private void jmi_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_ModificarActionPerformed
@@ -398,16 +523,64 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmi_ModificarActionPerformed
 
     private void jmi_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_guardarActionPerformed
-        try {
+        //esto
+        /*try {
             // TODO add your handling code here:
             universo.escribirArchivo();
             System.out.println("Se creo el archivooooo !!!!!!!!!!!!!!!");
         } catch (IOException ex) {
             ex.printStackTrace();
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+
+        // no me funciona guarda las rutas 
+        try {
+            JFileChooser jfc = new JFileChooser();
+            FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo de Texto", "txt");
+            jfc.addChoosableFileFilter(filtro);
+
+            int Seleccion = jfc.showSaveDialog(this);
+
+            universo.Guardar(Seleccion, jfc);
+            JOptionPane.showMessageDialog(this, "salio!");
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_jmi_guardarActionPerformed
+
+    private void btn_EliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_EliminarMouseClicked
+        // TODO add your handling code here:
+        int pos = jcb_Eliminar.getSelectedIndex();
+
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) jcb_modificar.getModel();
+        modelo.removeElementAt(pos);
+        jcb_modificar.setModel(modelo);
+        jcb_Eliminar.setModel(modelo);
+        universo.getSeresVivos().remove(pos);
+        JOptionPane.showMessageDialog(this, "Elemento Eliminado Exitosamente!");
+    }//GEN-LAST:event_btn_EliminarMouseClicked
+
+    private void jmi_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_eliminarActionPerformed
+        // TODO add your handling code here:
+        this.jd_Eliminar.setModal(true);
+        jd_Eliminar.pack();
+        jd_Eliminar.setLocationRelativeTo(this);
+        jd_Eliminar.setVisible(true);
+    }//GEN-LAST:event_jmi_eliminarActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        this.jd_Abrir.setModal(true);
+        jd_Abrir.pack();
+        jd_Abrir.setLocationRelativeTo(this);
+        jd_Abrir.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void btn_AbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AbrirMouseClicked
+
+
+    }//GEN-LAST:event_btn_AbrirMouseClicked
 
     /**
      * @param args the command line arguments
@@ -445,6 +618,8 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Abrir;
+    private javax.swing.JButton btn_Eliminar;
     private javax.swing.JButton btn_agregarU;
     private javax.swing.JButton btn_guardar;
     private javax.swing.JButton jButton1;
@@ -454,6 +629,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -463,7 +641,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> jcb_Eliminar;
     private javax.swing.JComboBox<String> jcb_modificar;
+    private javax.swing.JDialog jd_Abrir;
+    private javax.swing.JDialog jd_Eliminar;
     private javax.swing.JDialog jd_SerVivo;
     private javax.swing.JDialog jd_Universo;
     private javax.swing.JDialog jd_modificar;
@@ -473,11 +656,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmi_Modificar;
     private javax.swing.JMenuItem jmi_SerVivo;
     private javax.swing.JMenuItem jmi_Universo;
+    private javax.swing.JMenuItem jmi_eliminar;
     private javax.swing.JMenuItem jmi_guardar;
     private javax.swing.JSpinner js_anios;
     private javax.swing.JSpinner js_aniosM;
     private javax.swing.JSpinner js_ki;
     private javax.swing.JSpinner js_kiM;
+    private javax.swing.JTextArea jta_texto;
     private javax.swing.JTextField tf_nombreSV;
     private javax.swing.JTextField tf_nombreSVM;
     private javax.swing.JTextField tf_nombreUniverso;
