@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -22,6 +23,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class Universo {
 
+    private File archivo;
     private String nombre;
     private ArrayList<SeresVivos> seresVivos = new ArrayList();
 
@@ -46,6 +48,14 @@ public class Universo {
 
     public void setSeresVivos(ArrayList<SeresVivos> seresVivos) {
         this.seresVivos = seresVivos;
+    }
+
+    public File getArchivo() {
+        return archivo;
+    }
+
+    public void setArchivo(File archivo) {
+        this.archivo = archivo;
     }
 
     @Override
@@ -89,24 +99,24 @@ public class Universo {
                     String n = jfc.getName();
                     System.out.println(n);
                     //if (n.equals(nombre + ".txt")) {
-                        System.out.println(jfc.getSelectedFile().getPath());
-                        fichero = new File(jfc.getSelectedFile().getPath() + ".txt");
+                    System.out.println(jfc.getSelectedFile().getPath());
+                    fichero = new File(jfc.getSelectedFile().getPath() + ".txt");
 
-                        try {
-                            fw = new FileWriter(fichero, false);
-                            bw = new BufferedWriter(fw);
-                            for (SeresVivos sv : seresVivos) {
-                                bw.write(sv.getNombre() + "|");
-                                bw.write(sv.getKi() + "|");
-                                bw.write(sv.getMaximoAnios() + "|");
-                                bw.write(sv.getNombrePlaneta() + ";");
-                            }
-                            bw.flush();
-                            
-                            System.out.println("lo agrego");
-                        } catch (Exception e) {
-
+                    try {
+                        fw = new FileWriter(fichero, false);
+                        bw = new BufferedWriter(fw);
+                        for (SeresVivos sv : seresVivos) {
+                            bw.write(sv.getNombre() + "|");
+                            bw.write(sv.getKi() + "|");
+                            bw.write(sv.getMaximoAnios() + "|");
+                            bw.write(sv.getNombrePlaneta() + ";");
                         }
+                        bw.flush();
+
+                        System.out.println("lo agrego");
+                    } catch (Exception e) {
+
+                    }
 
                     /*} else {
                         JOptionPane.showMessageDialog(null, "Nombre erronea");
@@ -128,4 +138,50 @@ public class Universo {
         }
     }
 
+    public Universo Abrir(int seleccion, JFileChooser jfc) throws IOException {
+        File fichero = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+
+        try {
+
+            if (seleccion == JFileChooser.APPROVE_OPTION) {
+                fichero = jfc.getSelectedFile();
+                Universo universoAhora = new Universo(fichero.getName());
+                //ArrayList<SeresVivos> seres = new ArrayList();
+
+                fr = new FileReader(fichero);
+                br = new BufferedReader(fr);
+
+                Scanner sc = null;
+
+                try {
+                    sc = new Scanner(fichero);
+                    sc.useDelimiter(";");
+                    int con = 0;
+                    while (sc.hasNext()) {
+                        universoAhora.getSeresVivos().add(
+                                new SeresVivos( sc.next().replace("|", "") , Integer.parseInt(( sc.next().replace("|", "")) ),
+                                        Integer.parseInt(( sc.next().replace("|", "")) ) ,
+                                        sc.next() ));
+
+                    }
+
+                    return universoAhora;
+                } catch (Exception e) {
+                }
+                sc.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            br.close();
+            fr.close();
+        } catch (Exception e) {
+        }
+        
+         return new Universo("-1");
+    }
 }// fin de la clase

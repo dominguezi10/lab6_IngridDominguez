@@ -70,15 +70,10 @@ public class Principal extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jcb_Eliminar = new javax.swing.JComboBox<>();
         btn_Eliminar = new javax.swing.JButton();
-        jd_Abrir = new javax.swing.JDialog();
-        jLabel17 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jta_texto = new javax.swing.JTextArea();
-        btn_Abrir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jm_Archivo = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmi_Abrir = new javax.swing.JMenuItem();
         jmi_guardar = new javax.swing.JMenuItem();
         jm_Crear = new javax.swing.JMenu();
         jmi_Universo = new javax.swing.JMenuItem();
@@ -271,49 +266,6 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(26, 26, 26))
         );
 
-        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel17.setText("Documento");
-
-        jta_texto.setColumns(20);
-        jta_texto.setRows(5);
-        jScrollPane1.setViewportView(jta_texto);
-
-        btn_Abrir.setText("Abrir");
-        btn_Abrir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_AbrirMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jd_AbrirLayout = new javax.swing.GroupLayout(jd_Abrir.getContentPane());
-        jd_Abrir.getContentPane().setLayout(jd_AbrirLayout);
-        jd_AbrirLayout.setHorizontalGroup(
-            jd_AbrirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jd_AbrirLayout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_AbrirLayout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_AbrirLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_Abrir)
-                .addGap(184, 184, 184))
-        );
-        jd_AbrirLayout.setVerticalGroup(
-            jd_AbrirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jd_AbrirLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addComponent(btn_Abrir)
-                .addContainerGap())
-        );
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -323,13 +275,13 @@ public class Principal extends javax.swing.JFrame {
 
         jm_Archivo.setText("Archivo");
 
-        jMenuItem1.setText("Abrir");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jmi_Abrir.setText("Abrir");
+        jmi_Abrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jmi_AbrirActionPerformed(evt);
             }
         });
-        jm_Archivo.add(jMenuItem1);
+        jm_Archivo.add(jmi_Abrir);
 
         jmi_guardar.setText("Guardar");
         jmi_guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -569,18 +521,37 @@ public class Principal extends javax.swing.JFrame {
         jd_Eliminar.setVisible(true);
     }//GEN-LAST:event_jmi_eliminarActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jmi_AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_AbrirActionPerformed
         // TODO add your handling code here:
-        this.jd_Abrir.setModal(true);
-        jd_Abrir.pack();
-        jd_Abrir.setLocationRelativeTo(this);
-        jd_Abrir.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        try {
+            JFileChooser jfc = new JFileChooser();
+            FileNameExtensionFilter filtro1 = new FileNameExtensionFilter("Archivo de texto", "txt");
+            FileNameExtensionFilter filtro2 = new FileNameExtensionFilter("Imagenes", "jpg", "png", "bmp");
 
-    private void btn_AbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AbrirMouseClicked
+            jfc.setFileFilter(filtro1);// lo agrega
+            jfc.addChoosableFileFilter(filtro2); // lo va añadiendo a la cola
+            int seleccion = jfc.showOpenDialog(this);
+
+            
+            Universo tem  = universo.Abrir(seleccion, jfc);
+            if(tem.getNombre().equals("-1")){
+               
+            }else{
+                universo = universo.Abrir(seleccion, jfc);
+                
+                
+            }
+            System.out.println("salio?");
+            
+            System.out.println(universo);
+            
+            
+            
+        } catch (Exception e) {
+        }
 
 
-    }//GEN-LAST:event_btn_AbrirMouseClicked
+    }//GEN-LAST:event_jmi_AbrirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -618,7 +589,6 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_Abrir;
     private javax.swing.JButton btn_Eliminar;
     private javax.swing.JButton btn_agregarU;
     private javax.swing.JButton btn_guardar;
@@ -631,7 +601,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -641,11 +610,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> jcb_Eliminar;
     private javax.swing.JComboBox<String> jcb_modificar;
-    private javax.swing.JDialog jd_Abrir;
     private javax.swing.JDialog jd_Eliminar;
     private javax.swing.JDialog jd_SerVivo;
     private javax.swing.JDialog jd_Universo;
@@ -653,6 +619,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jm_Archivo;
     private javax.swing.JMenu jm_Crear;
     private javax.swing.JMenu jm_Modificar;
+    private javax.swing.JMenuItem jmi_Abrir;
     private javax.swing.JMenuItem jmi_Modificar;
     private javax.swing.JMenuItem jmi_SerVivo;
     private javax.swing.JMenuItem jmi_Universo;
@@ -662,7 +629,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JSpinner js_aniosM;
     private javax.swing.JSpinner js_ki;
     private javax.swing.JSpinner js_kiM;
-    private javax.swing.JTextArea jta_texto;
     private javax.swing.JTextField tf_nombreSV;
     private javax.swing.JTextField tf_nombreSVM;
     private javax.swing.JTextField tf_nombreUniverso;
