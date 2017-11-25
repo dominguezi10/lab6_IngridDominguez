@@ -168,11 +168,12 @@ public class Universo {
                         System.out.println(universoAhora.getSeresVivos());
                         
                     }
-                    
+                    sc.close();
                     return universoAhora;
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                sc.close();
+                
             }
         } catch (Exception e) {
             e.printStackTrace();
