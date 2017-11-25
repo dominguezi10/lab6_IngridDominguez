@@ -165,6 +165,7 @@ public class Universo {
                                 new SeresVivos( sc.next(), sc.nextInt(),
                                         sc.nextInt() ,
                                         sc.next() ) );
+                        System.out.println(universoAhora.getSeresVivos());
                         
                     }
                     
