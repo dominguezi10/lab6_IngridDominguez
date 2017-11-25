@@ -138,53 +138,63 @@ public class Universo {
         }
     }
 
-    public Universo Abrir(int seleccion, JFileChooser jfc) throws IOException {
+    public ArrayList Abrir(String path) throws IOException {
+        System.out.println("    ENTRA");
         File fichero = null;
         FileReader fr = null;
         BufferedReader br = null;
-
-        try {
-
-            if (seleccion == JFileChooser.APPROVE_OPTION) {
-                fichero = jfc.getSelectedFile();
-                Universo universoAhora = new Universo(fichero.getName());
-                //ArrayList<SeresVivos> seres = new ArrayList();
-                System.out.println("aqui estoy");
-                fr = new FileReader(fichero);
-                br = new BufferedReader(fr);
-                System.out.println(fichero.getName());
-                Scanner sc = null;
-
-                try {
-                    sc = new Scanner(fichero);
-                    sc.useDelimiter("|");
+        archivo = new File(path);
+        System.out.println("CREA EL ARCHIVO");
+       // Universo universoAhora = new Universo(archivo.getName());
+        ArrayList<SeresVivos> seres = new ArrayList();
+        System.out.println("aqui estoy");
+        fr = new FileReader(archivo);
+        br = new BufferedReader(fr);
+        System.out.println(archivo.getName());
+        Scanner sc = null;
+        if (archivo.exists()) {
+            seresVivos = new ArrayList();
+            
+            System.out.println("estoy aqui");
+            String texto = br.readLine();
+            System.out.println(texto);
+            String [] datos  = texto.split("\\|");
+            
+            System.out.println(datos.length);
+            for (int i = 0; i < datos.length; i++) {
+                seresVivos.add(new SeresVivos(
+                        datos[i], Integer.parseInt(datos[i+1]),
+                       Integer.parseInt(datos[i+2]), datos[i+3]));
+                i = i+3;
+                System.out.println(seresVivos.get(seresVivos.size() -1));
+            } // fin del for
+            
+            
+            return seresVivos;
+        }
+        /*try {
+                    seresVivos=new ArrayList();
+                    sc = new Scanner(archivo);
+                    sc.useDelimiter("\\|");
                     System.out.println("entre");
-                    int con = 0;
+                   
                     while (sc.hasNext()) {
-                        universoAhora.getSeresVivos().add(
-                                new SeresVivos( sc.next(), sc.nextInt(),
-                                        sc.nextInt() ,
-                                        sc.next() ) );
-                        System.out.println(universoAhora.getSeresVivos());
-                        
+                        System.out.println(sc.next());
                     }
                     sc.close();
-                    return universoAhora;
+                    
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+         */
 
         try {
             br.close();
             fr.close();
         } catch (Exception e) {
         }
-        
-         return new Universo("-1");
+
+        ArrayList <SeresVivos> n = new ArrayList();
+        return n ;
     }
 }// fin de la clase

@@ -421,6 +421,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmi_guardar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Guardar"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmi_guardarActionPerformed"/>
@@ -463,6 +464,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmi_Modificar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Modificar Ser Vivo"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmi_ModificarActionPerformed"/>
@@ -471,6 +473,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jmi_eliminar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Eliminar Ser Vivo"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmi_eliminarActionPerformed"/>

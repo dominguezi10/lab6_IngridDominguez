@@ -7,6 +7,7 @@ package lab.pkg6_ingriddominguez;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -284,6 +285,7 @@ public class Principal extends javax.swing.JFrame {
         jm_Archivo.add(jmi_Abrir);
 
         jmi_guardar.setText("Guardar");
+        jmi_guardar.setEnabled(false);
         jmi_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmi_guardarActionPerformed(evt);
@@ -322,6 +324,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         jmi_Modificar.setText("Modificar Ser Vivo");
+        jmi_Modificar.setEnabled(false);
         jmi_Modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmi_ModificarActionPerformed(evt);
@@ -330,6 +333,7 @@ public class Principal extends javax.swing.JFrame {
         jm_Modificar.add(jmi_Modificar);
 
         jmi_eliminar.setText("Eliminar Ser Vivo");
+        jmi_eliminar.setEnabled(false);
         jmi_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmi_eliminarActionPerformed(evt);
@@ -351,6 +355,9 @@ public class Principal extends javax.swing.JFrame {
         jd_Universo.pack();
         jd_Universo.setLocationRelativeTo(this);
         jd_Universo.setVisible(true);
+        jmi_guardar.setEnabled(true);
+        jmi_Modificar.setEnabled(true);
+        jmi_eliminar.setEnabled(true);
 
 
     }//GEN-LAST:event_jmi_UniversoActionPerformed
@@ -522,7 +529,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmi_eliminarActionPerformed
 
     private void jmi_AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_AbrirActionPerformed
-        // TODO add your handling code here:
+        Universo u = new Universo();
         try {
             JFileChooser jfc = new JFileChooser();
             FileNameExtensionFilter filtro1 = new FileNameExtensionFilter("Archivo de texto", "txt");
@@ -532,21 +539,55 @@ public class Principal extends javax.swing.JFrame {
             jfc.addChoosableFileFilter(filtro2); // lo va añadiendo a la cola
             int seleccion = jfc.showOpenDialog(this);
 
-            
-            Universo tem  = universo.Abrir(seleccion, jfc);
-            if(tem.getNombre().equals("-1")){
-               
-            }else{
-                universo = universo.Abrir(seleccion, jfc);
-                
+            if (seleccion == JFileChooser.APPROVE_OPTION) {
+                System.out.println("LA RUTA: " + jfc.getSelectedFile().getPath());
+                ArrayList<SeresVivos> sv = u.Abrir(jfc.getSelectedFile().getPath());
+                System.out.println("sali es mi " + sv.size());
                 System.out.println(universo);
+
+                if (sv.size() > 0) {
+                    
+                    /*if (universo !=  null) {
+                        //System.out.println(universo.getNombre() + " " + universo.getSeresVivos());
+                        System.out.println("plisss");
+                        DefaultComboBoxModel modelo1 = (DefaultComboBoxModel) jcb_modificar.getModel();
+
+                        modelo1.removeAllElements();
+                        System.out.println("qqui");
+                        jcb_modificar.setModel(modelo1);
+                        jcb_Eliminar.setModel(modelo1);
+                        
+                        System.out.println("blabla");
+                    }*/
+                    
+                    
+                    String n = jfc.getSelectedFile().getName().replace(".txt", "");
+                    System.out.println(n);
+
+                    universo = new Universo(n);
+                    universo.setSeresVivos(sv);
+
+                    System.out.println(universo.getNombre() + " " + universo.getSeresVivos());
+                    DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+                    
+                    for (SeresVivos s : sv) {
+                        modelo.addElement(s);
+                    }
+
+                    jcb_modificar.setModel(modelo);
+                    jcb_Eliminar.setModel(modelo);
+
+                    jmi_Universo.setEnabled(false);
+                    jmi_SerVivo.setEnabled(true);
+                    jmi_guardar.setEnabled(true);
+                    jmi_Modificar.setEnabled(true);
+                    jmi_eliminar.setEnabled(true);
+                    System.out.println(universo);
+
+                }
+
             }
-            System.out.println("salio?");
-            
-            System.out.println(universo);
-            
-            
-            
+
         } catch (Exception e) {
         }
 
