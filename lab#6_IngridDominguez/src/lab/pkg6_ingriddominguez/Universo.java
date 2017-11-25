@@ -109,7 +109,7 @@ public class Universo {
                             bw.write(sv.getNombre() + "|");
                             bw.write(sv.getKi() + "|");
                             bw.write(sv.getMaximoAnios() + "|");
-                            bw.write(sv.getNombrePlaneta() + ";");
+                            bw.write(sv.getNombrePlaneta() + "|");
                         }
                         bw.flush();
 
@@ -149,24 +149,25 @@ public class Universo {
                 fichero = jfc.getSelectedFile();
                 Universo universoAhora = new Universo(fichero.getName());
                 //ArrayList<SeresVivos> seres = new ArrayList();
-
+                System.out.println("aqui estoy");
                 fr = new FileReader(fichero);
                 br = new BufferedReader(fr);
-
+                System.out.println(fichero.getName());
                 Scanner sc = null;
 
                 try {
                     sc = new Scanner(fichero);
-                    sc.useDelimiter(";");
+                    sc.useDelimiter("|");
+                    System.out.println("entre");
                     int con = 0;
                     while (sc.hasNext()) {
                         universoAhora.getSeresVivos().add(
-                                new SeresVivos( sc.next().replace("|", "") , Integer.parseInt(( sc.next().replace("|", "")) ),
-                                        Integer.parseInt(( sc.next().replace("|", "")) ) ,
-                                        sc.next() ));
-
+                                new SeresVivos( sc.next(), sc.nextInt(),
+                                        sc.nextInt() ,
+                                        sc.next() ) );
+                        
                     }
-
+                    
                     return universoAhora;
                 } catch (Exception e) {
                 }

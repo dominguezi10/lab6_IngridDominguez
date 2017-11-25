@@ -539,7 +539,7 @@ public class Principal extends javax.swing.JFrame {
             }else{
                 universo = universo.Abrir(seleccion, jfc);
                 
-                
+                System.out.println(universo);
             }
             System.out.println("salio?");
             
